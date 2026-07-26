@@ -1,0 +1,104 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-family: var(--typography-headline-medium-font-family);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-on-background);
+  margin: 0;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px;
+  text-align: center;
+  background-color: var(--color-inverse-on-surface);
+  border-radius: 12px;
+  border: 1px dashed var(--color-outline-variant);
+  color: var(--color-on-surface);
+}
+
+.emptyIcon {
+  color: var(--color-outline);
+  margin-bottom: 8px;
+}
+
+.emptyTitle {
+  font-family: var(--typography-title-medium-font-family);
+  font-size: var(--typography-title-medium-font-size);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.emptyDesc {
+  font-family: var(--typography-body-medium-font-family);
+  font-size: var(--typography-body-medium-font-size);
+  color: var(--color-on-surface-variant);
+  margin: 0 0 8px;
+}
+
+.tableWrapper {
+  background-color: var(--color-inverse-on-surface);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-outline-variant);
+  font-family: var(--typography-body-medium-font-family);
+  font-size: var(--typography-body-medium-font-size);
+  color: var(--color-on-surface);
+}
+
+.table th {
+  font-weight: 600;
+  background-color: var(--color-surface-dim);
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--typography-label-small-font-family);
+  font-size: var(--typography-label-small-font-size);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.pending {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #856404;
+}
+
+.paid {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #155724;
+}
+
+.failed {
+  background-color: var(--color-error-container);
+  color: var(--color-on-error-container);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+  }
+}

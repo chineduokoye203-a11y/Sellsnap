@@ -1,0 +1,18 @@
+@import "../tokens/tokens.css";
+
+body {
+  background: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-poppins), var(--typography-body-medium-font-family), sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}

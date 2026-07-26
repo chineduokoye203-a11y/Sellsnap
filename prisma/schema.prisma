@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  name                String?
+  email               String    @unique
+  businessName        String
+  passwordHash        String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+  passwordChangedAt   DateTime?
+  onboardingComplete  Boolean   @default(false)
+  sessionVersion      Int       @default(0)
+  createdAt           DateTime  @default(now())
+  products            Product[]
+}
+
+model Product {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  name         String
+  description String?
+  priceKobo   Int
+  imageUrl    String?
+  uniqueSlug  String   @unique
+  isActive   Boolean  @default(true)
+  createdAt  DateTime  @default(now())
+  orders     Order[]
+}
+
+model Order {
+  id                   String   @id @default(cuid())
+  productId            String
+  product              Product   @relation(fields: [productId], references: [id])
+  amountKobo           Int
+  currency             String    @default("NGN")
+  status              String    @default("pending")
+  buyerEmail          String
+  buyerName           String?
+  transactionReference String @unique
+  verifyToken         String?
+  expiresAt           DateTime?
+  createdAt          DateTime   @default(now())
+  payment            Payment?
+}
+
+model Payment {
+  id               String   @id @default(cuid())
+  orderId          String   @unique
+  order            Order    @relation(fields: [orderId], references: [id])
+  gatewayReference String @unique
+  status           String
+  paidAt           DateTime  @default(now())
+  logs             PaymentLog[]
+}
+
+model PaymentLog {
+  id        String   @id @default(cuid())
+  paymentId String?
+  payment   Payment? @relation(fields: [paymentId], references: [id])
+  orderId   String
+  txRef     String
+  event     String
+  message   String?
+  metadata  String?
+  createdAt DateTime @default(now())
+}
