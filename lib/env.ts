@@ -16,11 +16,18 @@ const envSchema = z.object({
   SMTP_PASS: z.string().optional(),
 });
 
-const _env = envSchema.safeParse(process.env);
-
-if (!_env.success) {
-  console.error('Invalid environment variables:', _env.error.format());
-  throw new Error('Invalid environment variables');
+function getEnv() {
+  const result = envSchema.safeParse(process.env);
+  if (!result.success) {
+    console.error('Invalid environment variables:', result.error.format());
+    throw new Error('Invalid environment variables');
+  }
+  return result.data;
 }
 
-export const env = _env.data;
+export const env = new Proxy({} as z.infer<typeof envSchema>, {
+  get(_target, prop) {
+    const data = getEnv();
+    return (data as Record<string, unknown>)[prop as string];
+  },
+});
