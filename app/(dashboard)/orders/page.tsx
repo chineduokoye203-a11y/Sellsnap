@@ -38,7 +38,7 @@ export default async function OrdersPage() {
               </tr>
             </thead>
             <tbody>
-              {orders.map(order => (
+              {orders.map((order: typeof orders[number]) => (
                 <tr key={order.id}>
                   <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                   <td>{order.product.name}</td>

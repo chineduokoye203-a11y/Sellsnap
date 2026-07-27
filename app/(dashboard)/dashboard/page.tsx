@@ -92,7 +92,7 @@ export default async function DashboardPage() {
         <h2 className={styles.recentOrdersTitle}>Recent Orders</h2>
         {recentOrders.length > 0 ? (
           <div className={styles.orderList}>
-            {recentOrders.map(order => (
+            {recentOrders.map((order: typeof recentOrders[number]) => (
               <div key={order.id} className={styles.orderItem}>
                 <div>
                   <div className={styles.orderProduct}>{order.productName}</div>
