@@ -14,7 +14,7 @@ export async function deleteProduct(productId: string) {
     select: { id: true },
   });
 
-  const orderIds = orders.map((o) => o.id);
+  const orderIds = orders.map((o: typeof orders[number]) => o.id);
   if (orderIds.length > 0) {
     await db.payment.deleteMany({ where: { orderId: { in: orderIds } } });
     await db.order.deleteMany({ where: { id: { in: orderIds } } });
