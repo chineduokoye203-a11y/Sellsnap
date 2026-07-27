@@ -23,7 +23,7 @@ export default async function DashboardPage() {
     }
   });
 
-  const activeProducts = products.filter(p => p.isActive).length;
+  const activeProducts = products.filter((p: typeof products[number]) => p.isActive).length;
   const inactiveProducts = products.length - activeProducts;
   
   let totalRevenueKobo = 0;
