@@ -37,8 +37,8 @@ export default async function DashboardPage() {
     productName: string;
   }> = [];
 
-  products.forEach(product => {
-    product.orders.forEach(order => {
+  products.forEach((product: typeof products[number]) => {
+    product.orders.forEach((order: typeof product.orders[number]) => {
       totalRevenueKobo += order.amountKobo;
       totalOrders += 1;
       allOrders.push({
